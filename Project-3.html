@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+
+<!-- Frank Siderio
+	 10/2/2014
+	 Introduction to Programming
+	 Project 3 - The Funny and Haunted House. The Faunted House -->
+	 
+	<head>
+		<title>
+			The Faunted House. 
+		</title>
+		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+      
+      <script type="text/javascript">
+      
+      	var playerLocation = 0;
+     	var score = 0;
+      	var counterNorth = 0;
+      	var counterSouth = 0;
+      	var counterEast = 0;
+      	var counterWest = 0;
+      	var counterNorthEast = 0;
+      	var errorCount = 0;
+      
+      	function btnGo_clickNorth()
+      	{
+      	
+      		if(playerLocation === 0)
+      		{
+				playerLocation = 1;
+				look();
+			}
+			
+			else if(playerLocation === 2)
+			{
+				playerLocation = 0;  
+				look();
+			}
+		
+			else if(playerLocation === 4)
+			{
+				playerLocation = 5;	
+				look();
+			}
+		
+			else
+				NavigationError();	
+				
+     	 } 
+      
+		function btnGo_clickSouth()
+      	{
+      
+      		if(playerLocation === 0)
+      		{
+      			playerLocation = 2;
+      			look();
+      		}
+      		
+      		else if(playerLocation === 1)
+      		{
+      			playerLocation = 0;
+      			look();
+      		}
+      		
+      		else if(playerLocation === 5)
+      		{
+      			playerLocation = 4;
+      			look();
+      		}
+      		
+      		else
+      			NavigationError();
+      
+      	}  
+      
+      	function btnGo_clickEast()
+      	{
+      		if(playerLocation === 0)
+      		{
+      			playerLocation = 4;
+      			look();
+      		}
+      	
+      		else if(playerLocation === 3)
+      		{
+      			playerLocation = 0;
+      			look();
+      		}
+      		
+      		else if(playerLocation === 1)
+      		{
+      			playerLocation = 5;
+      			look();
+      		}
+      	
+      		else
+      			NavigationError();
+      	}  
+      
+      	function btnGo_clickWest()
+      	{
+      		if(playerLocation === 0)
+      		{
+      			playerLocation = 3;
+      			look();
+      		}
+      	
+      		else if(playerLocation === 4)
+      		{
+      			playerLocation = 0;
+      			look();
+      		}
+      	
+      		else if(playerLocation === 5)
+      		{
+      			playerLocation = 1;
+      			look();
+      		}
+      		
+      		else
+      			NavigationError();    	
+	  	}
+	
+		function look()
+		{
+			var desc = "";
+		
+        	switch(playerLocation) 
+        	{
+            	case 0: desc = "Your back where you started. The center of the house. Yes I know very exciting.";
+                   	break;
+    			case 1: desc = "You moved to the North side of the house. All you hear is two people....screaming.";
+                   	break; 
+        		case 2: desc = "You moved to the South side of the house. Still dark, still scary, but your probably not that scared right now.";
+                   	break;
+            	case 3: desc = "You moved to the West side of the house. There's a women telling you to stay but you can't see her...she doesn't sound attractive";
+                    break;
+            	case 4: desc = "You moved to the East side of the house. There's a man telling you to get out but you can't see him.";
+                    break;
+           		case 5: desc = "Currently, you are in the NorthEast corner of the house. There is a man who is just staring at you.";
+            		break;
+				
+        	}
+        		doScore();
+            	Display_Message(desc);
+		}
+	
+		function doScore()
+		{
+			if(playerLocation === 1)
+			{
+				if(counterNorth === 0)
+				{
+					score += 5;
+					counterNorth++;
+				}
+				
+				else
+					counterNorth++;
+			}
+		
+			else if(playerLocation === 2)
+			{
+				if(counterSouth === 0)
+				{
+					score += 5;
+					counterSouth++;
+				}
+			
+				else
+					counterSouth++;
+		
+			}
+		
+			else if(playerLocation === 3)
+			{
+				if(counterWest === 0)
+				{
+					score += 5;
+					counterWest++;
+				}
+			
+				else
+					counterWest++;
+			}	
+		
+			else if(playerLocation === 4)
+			{
+				if(counterEast === 0)
+				{
+					score += 5;
+					counterEast++;
+				}
+			
+				else
+					counterEast++;
+		
+			}
+		
+			else if(playerLocation === 5)
+			{
+				if(counterNorthEast === 0)
+				{
+					score += 5;
+					counterNorthEast++;
+				}
+			
+				else
+					counterNorthEast++;
+		
+			}
+	
+		}
+	
+		function NavigationError()
+		{
+			var errorMessage = "Error you hit the wall. So you cannot go that way";
+			errorCount++;
+		
+			Display_Message(errorMessage);
+			
+		}
+      
+		function Display_Message(m)
+		{
+  			display = document.getElementById("taMain");
+    		display.value += "\n" + m + " Score: " + score + "\n";
+
+    	}	
+    
+    	function btnGo_click()
+    	{
+    		var direction = document.getElementById("txtCommand");
+    	
+    		if(direction.value === "N" || direction.value === "n")
+    			btnGo_clickNorth();
+    		
+    		else if(direction.value === "S" || direction.value === "s")
+    			btnGo_clickSouth();
+    	
+    		else if(direction.value === "E" || direction.value === "e")
+    			btnGo_clickEast();
+    	
+    		else if(direction.value === "W" || direction.value === "w")
+    			btnGo_clickWest();
+    		
+    		else
+    			Display_Message("Error. Valid Inputs: N,n,S,s,E,e,W,w");
+    
+    	}
+      
+      
+      
+      </script>
+      
+      <style>a
+      	.EmailFont{font-style: italic;}
+      </style>
+		
+	
+	</head>
+	
+	<body>
+	
+	<h1>The Faunted House. The Funny and Haunted House</h1>
+	
+	<h4> Warning: If you don't have a sense of humor please leave now. </h4>
+	
+	<!-- Couldn't indent the text because it looked ugly -->
+	<textarea rows="30" cols="50" id="taMain">
+You are standing in the middle of a house. 
+You don't know how you got there and its very dark.
+Last thing you remember is taking that one sip of "soda".
+	</textarea>
+	
+	<br></br>
+	
+	<input type="button"
+              value="North" 
+              onclick="btnGo_clickNorth();" /> 
+    
+    <input type = "button"
+    		value = "South"
+    		onclick = "btnGo_clickSouth();" /> 
+    		
+    <input type = "button"
+    		value = "East"
+    		onclick = "btnGo_clickEast();" />
+    		
+    <input type = "button"
+    		value = "West"
+    		onclick = "btnGo_clickWest();" />
+    		
+	<br></br>
+	
+    <input type="text" 
+		id = "txtCommand"
+		name= "txtCommand" />
+		
+	<input type = "button"
+			value = "Go"
+			onclick = "btnGo_click();" />
+
+    
+    <p class = "EmailFont">
+    	<a href = "mailto:Frank.Siderio1@marist.edu?Subject=Your%20game%20was%20oustanding!">Send me an e-mail</a>
+    </p>
+    		
+	</body>
+
+</html>
