@@ -218,6 +218,12 @@
 		{
 			var errorMessage = "Error you hit the wall. So you cannot go that way";
 			errorCount++;
+			
+			if(errorCount === 7)
+				errorMessage = "Okay you have hit the wall too many times. Don't make me use alert";
+				
+			else if(errorCount === 10)
+				alert("Okay. I had to do it and I am sorry but it had to be done");
 		
 			Display_Message(errorMessage);
 			
